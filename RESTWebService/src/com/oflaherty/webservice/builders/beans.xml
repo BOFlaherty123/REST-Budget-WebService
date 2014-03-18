@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="builder" class="com.oflaherty.webservice.builders.response.ResponseBuilder">
+           <property name="processors">
+                <map key-type="java.lang.Integer" value-type="com.oflaherty.webservice.processors.AbstractProcessor">
+                    <entry key="1" value-ref="calculateMonthlyProcessor"/>
+                    <entry key="2" value-ref="calculateYearlyProcessor"/>
+                    <entry key="3" value-ref="taxProcessor"/>
+                    <entry key="4" value-ref="pensionProcessor"/>
+                    <entry key="5" value-ref="socialisingProcessor"/>
+                    <entry key="6" value-ref="additionalPurchasesProcessor"/>
+                </map>
+           </property>
+       </bean>
+
+        <bean id="calculateMonthlyProcessor" class="com.oflaherty.webservice.processors.calculate.CalculateMonthlyProcessor"/>
+        <bean id="calculateYearlyProcessor" class="com.oflaherty.webservice.processors.calculate.CalculateYearlyProcessor"/>
+        <bean id="additionalPurchasesProcessor" class="com.oflaherty.webservice.processors.otherdeductions.AdditionalPurchasesProcessor"/>
+        <bean id="pensionProcessor" class="com.oflaherty.webservice.processors.financialdeductions.PensionProcessor"/>
+        <bean id="taxProcessor" class="com.oflaherty.webservice.processors.financialdeductions.TaxProcessor"/>
+        <bean id="socialisingProcessor" class="com.oflaherty.webservice.processors.otherdeductions.SocialisingProcessor"/>
+
+</beans>

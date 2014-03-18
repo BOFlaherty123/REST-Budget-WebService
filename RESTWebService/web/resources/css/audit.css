@@ -1,0 +1,12 @@
+table#audit_table {
+    width: 100%;
+    height: 100%;
+}
+
+th#fileName {
+    width: 25%;
+}
+
+th#yearlyIncome th#incomeTax th#natInsurance {
+    width: 10%;
+}
