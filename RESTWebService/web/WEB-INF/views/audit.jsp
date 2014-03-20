@@ -13,8 +13,6 @@
 
         <h2>Budget Service Audit Files</h2>
 
-        <a href="/audit/deleteAudit.htm?_flowId=audit">Launch Flow</a>
-
         <table id="audit_table">
             <tr>
                 <th id="fileName">File Name</th>
