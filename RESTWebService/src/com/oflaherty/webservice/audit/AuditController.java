@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class AuditController {
     private static final String CLEANUP_URL = "D:\\RAD8\\Personal\\RESTWebService\\GroovyScripts\\src\\audit\\AuditFolderCleanup.groovy";
 
     @RequestMapping(value="/show")
-    public String processAudits(ModelMap model) throws IllegalAccessException, InstantiationException, IOException {
+    public String processAudits(ModelMap model, HttpServletRequest request) throws IllegalAccessException, InstantiationException, IOException {
 
         Class clazz = setupGroovyClassLoader(SCRIPT_URL);
 
@@ -63,6 +64,9 @@ public class AuditController {
         }
 
         model.addAttribute("audits", audits);
+        model.addAttribute("ipAddress", request.getRemoteAddr());
+        model.addAttribute("sessionId", request.getSession().getId());
+        model.addAttribute("browser", request.getHeader("User-Agent"));
 
         return "audit";
 

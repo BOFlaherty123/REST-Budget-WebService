@@ -36,6 +36,7 @@
        implementation of javax.servlet.Filter that's registered as a <bean> in the application context.
 
     -->
+
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>

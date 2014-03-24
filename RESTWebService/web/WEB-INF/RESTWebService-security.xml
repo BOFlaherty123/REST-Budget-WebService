@@ -31,8 +31,11 @@
                                     authentication-failure-url="/login?login_error=t"/>
 
     -->
-    <http auto-config="true">
-        <intercept-url pattern="/audit/show*" access="ROLE_USER" />
+    <http auto-config="true" use-expressions="true" access-denied-page="/accessDenied">
+        <intercept-url pattern="/audit/show*" access="hasRole('ROLE_USER')" />
+        <form-login login-processing-url="/static/j_spring_security_check" login-page="/login"
+                    authentication-failure-url="/login?login_error=t"/>
+        <logout logout-url="/static/j_spring_security_logout"/>
     </http>
 
     <!--
@@ -42,6 +45,7 @@
         <authentication-provider>
             <user-service>
                 <user name="username" password="password" authorities="ROLE_USER" />
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
     </authentication-manager>

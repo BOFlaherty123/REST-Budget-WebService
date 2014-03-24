@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
@@ -11,7 +12,15 @@
 
     <body>
 
-        <h2>Budget Service Audit Files</h2>
+        <h2>Welcome, <security:authentication property="principal.username"/>! Budget Service Audit Files</h2>
+
+        <security:authorize access="hasRole('ROLE_USER')">
+
+            <b>IP Address:</b> <c:out value="${ipAddress}"/><br/>
+            <b>Session ID:</b> <c:out value="${sessionId}"/><br/>
+            <b>Browser:</b> <c:out value="${browser}"/><br/>
+
+        </security:authorize>
 
         <table id="audit_table">
             <tr>
